@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+	<link rel="stylesheet" type="text/css" href="/users.css">
+	<body>
+		<a href="/">logout</a>
+			<div class = "User">
+				<h1>Welcome <%= user.name %> <%= user.surname %>,</h1>
+				<p><strong>Email: <%= user.email %></strong></p>
+				<p><strong>Gender: <%= user.gender %></strong></p>
+				<p><strong>DOB: <%= user.birthday %></strong></p>
+				<p><strong>Password:<%= user.password %></strong></p>
+				<a href="/users/delete/<%= user._id %>">Delete Account?</a>
+			</div>
+	</body>
+</html>

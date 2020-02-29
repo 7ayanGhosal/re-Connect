@@ -1,0 +1,71 @@
+.brand{
+	font-family: 'Yanone Kaffeesatz', sans-serif;
+	font-weight: 800;
+	font-size: 4rem;
+	letter-spacing: 2px;
+}
+.bg-dark {
+    background-color: #3b5998!important;
+}
+.nav-form{
+	color: white;
+	font-size: 12px;
+	font-weight: bold;
+}
+.nav-form input{
+	height: 20px;
+}
+.forgotten{
+	color: #90949c;
+	font-size: 11px;
+}
+.start-img{
+	background-image: cover;
+	width: 100%;
+}
+
+.login-btn{
+	height: 20px;
+	width: 50px;
+	padding: 0;
+	font-size: 10px; 
+	margin: 0;
+	border-radius: 0;
+	border: 1px solid black;
+	background-color: #bb5998!important;
+	color: white;
+}
+body{
+	background-color: #eceff5;
+}
+.left-text{
+	margin-top: 31px;
+	font-size: 25px;
+}
+.right-text{
+	font-size: 25px;
+	text-align: left;
+}
+.label-bday, .label-gender{
+	font-size: 20px;
+	font-weight: bold;
+	color: #90949c;
+}
+.bday-info:hover ,.gender-info:hover{
+	color: red;
+}
+.label-gender span{
+	color: black;
+	font-weight: normal;
+	font-size: 22px;
+}
+.agreement-text{
+	font-size: 16px;
+	color: #777;
+}
+.agreement-text a{
+	color: #385898
+}
+.create-text{
+	color: #666;
+}

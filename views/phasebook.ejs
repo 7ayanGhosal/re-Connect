@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fakebook-log in</title>
+	<link rel="icon" href="logo.jfif" type="image/icon type">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+	<link rel="stylesheet" type="text/css" href="phasebook.css">
+
+	<link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/c3d8830f03.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+	<!-- NAVBAR -->
+	<nav class="navbar navbar-dark bg-dark">
+  		<div class="container-md">
+	  		<a class="navbar-brand" href="#"><span class="brand">fakebook</span></a>
+			<form class="nav-form" action="/signin" method="post">
+				<div class="row justify-content-between">
+					<div class="col col-4 ">
+						<div>Email or Phone</div>
+						<div><input class="form" type="email" name = "useremail" required></div>
+					</div>
+					<div class="col col-4">
+						<div>Password</div>
+						<div><input class="form" type="password" name="userpassword" required></div>
+						<a href="#" class="forgotten">Forgotten account?</a>
+					</div>
+					<div class="col col-3 align-self-center">
+						<button type="submit" class="login-btn">Log In</button>
+					</div>
+				</div>
+			</form>
+	  	</div>
+	</nav>
+
+	<!-- FORM REGION -->
+
+	<div class="container-md">
+		<div class="row">
+			<div class="col col-6">
+				<h4 class="left-text">Facebook helps you connect and share with the people in your life.</h4>	
+				<!-- <div class="start-img"><img src="img1.png"></div> -->
+			</div>
+			<div class="col col-5 pl-5">
+				<form class="row" action="/signup" method="post">
+					<div>
+						<h1 class="pl-2">Create an account</h1>
+						<div class="right-text pl-2">It's quick and easy.</div>
+					</div>
+					<div class="row pl-4">
+						<div>
+							<div class="input-group mt-3">
+							  	<input type="text" placeholder="Enter name" name="username" aria-label="Name" class="form-control rounded mr-2" required>
+							  	<input type="text" placeholder="Surname" name="usersurname" aria-label="Surname" class="form-control rounded" required>
+							</div>
+							<div class="input-group mt-3">
+							  	<input type="email number" name="useremail" placeholder="Mobile number or email address" aria-label="Mobile" class="form-control rounded" required>
+							</div>
+							<div class="input-group mt-3">
+							  	<input type="password" placeholder="New password" name="userpassword" aria-label="password" class="form-control rounded" required>
+							</div>
+							<div class="input-group mt-3">
+							  	<label class="label-bday w-100">Birthday:
+							  		<div>
+							  			<input type="date" aria-label="birthday" name="userbirthday" class="form-control d-inline w-75" required>
+							  			<abbr title="Click for more information"><i class="fas fa-question-circle bday-info"></i></abbr>
+							  		</div>
+							  	</label>
+							</div>
+							<div class="input-group mt-3">
+							  	<label class="label-gender w-100">Gender:<br>
+							  		<input type="radio" name="gender" name="usergender" value="female" class="ml-3  mr-1 mt-2"><span>Female</span>
+  									<input type="radio" name="gender" name="usergender" value="male" class="ml-3 mr-1 "><span>Male</span>
+  									<input type="radio" name="gender" name="usergender" value="other" class="ml-3 mr-1 "><span>Other</span>
+  									<abbr title="Click for more information" class="ml-3"><i class="fas fa-question-circle gender-info"></i></abbr>
+							  	</label>
+							</div>
+							<div class="agreement-text w-75 mt-2">
+								<p>By clicking Sign Up, you agree to our <a href="#">Terms</a>, <a href="#">Data Policy</a> and <a href="#">Cookie Policy</a>. You may receive SMS notifications from us and can opt out at any time.</p>
+							</div>
+							<div>
+								<button type="submit" class="btn btn-sm w-50 btn-success">Sign up</button>
+							</div>
+							<div class="create-text">
+								<p><a href="#">Create a Page</a> for a celebrity, band or business.</p>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+body{
+	background: orange;
+}
+.Post{
+	border: 2px solid red;
+	margin :10px;
+	padding: 10px;
+}

@@ -8,13 +8,11 @@ app.listen(process.env.PORT||3100,process.env.IP,function(){
 })
 
 var mongoose = require("mongoose");
-mongoose.set('useNewUrlParser', true);
-mongoose.set('useFindAndModify', false);
-mongoose.set('useCreateIndex', true);
-mongoose.set('useUnifiedTopology', true);
-mongoose.connect("mongodb+srv://ayanghosal:ayanghosal0@cluster0-zx5tz.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true });
-//mongoose.connect("mongodb://localhost/phasebook_user_app", { useNewUrlParser: true });
+//mongoose.connect("mongodb+srv://ayanghosal:ayanghosal0@cluster0-zx5tz.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost/phasebook_user_app", { useNewUrlParser: true });
 
+
+var initialPic = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRSzwH7TCpqpvI2AwUmRgAWz1GX-1xr5d3xl97t2FqIDZFU9ubP";
 
 //------------------------------------------------SCHEMA
 var userSchema = new mongoose.Schema({
@@ -24,6 +22,7 @@ var userSchema = new mongoose.Schema({
 	password: String,
 	birthday: Date,
 	gender: String,
+	profilePic: String
 });
 
 //------------------------------------------------MODEL
@@ -45,7 +44,7 @@ app.post("/signup", function(req, res){
 	var password = req.body.userpassword;
 	var birthday = req.body.userbirthday;
 	var gender = req.body.usergender;
-	var newUser = {name: name, surname:surname, email: email, password: password, birthday: birthday, gender: gender};
+	var newUser = {name: name, surname:surname, email: email, password: password, birthday: birthday, gender: gender, profilePic: initialPic};
 	//check if user already exists
 	User.find({name: name}, function(err, foundUser){
 		var len = foundUser.length;
@@ -141,3 +140,36 @@ app.get("/admin/delete/:id", function(req, res){
 			})
 		});
 })
+
+
+//-----------------------------------------------profile pic update
+app.post("/profilePic/:id", function(req, res){
+	var id = req.params.id;
+	var myquery = {_id: id};
+	if(! req.body.pic)
+		req.body.pic = initialPic;
+  	var newvalues = {$set: {profilePic: req.body.pic}};
+
+	User.updateOne(myquery, newvalues, function(err, _res) {
+    	if (err) {throw err}
+    	else{
+			signin(id, res);
+    	}
+    })
+});
+
+//---------------------------------------------------------signin function
+var signin = function(id, res){
+	User.find({_id: id},function(err, foundUser){
+			if(err){
+				console.log("ProfilePic ERROR");
+			}
+			else{
+				res.render("users.ejs",{user:foundUser[0]});
+			}
+	})
+}	
+
+
+
+

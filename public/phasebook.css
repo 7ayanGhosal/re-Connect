@@ -35,9 +35,6 @@
 	background-color: #bb5998!important;
 	color: white;
 }
-body{
-	background-color: #eceff5;
-}
 .left-text{
 	margin-top: 31px;
 	font-size: 25px;
@@ -68,4 +65,14 @@ body{
 }
 .create-text{
 	color: #666;
+}
+.copyright{
+	position: fixed;
+    /*right: 0;*/
+    bottom: 0;
+    /*left: 0;*/
+    /*z-index: 1030;*/
+}
+.madeby{
+	font-size: 2rem;
 }

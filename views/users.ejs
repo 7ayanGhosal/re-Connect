@@ -1,15 +1,89 @@
-<!DOCTYPE html>
-<html>
-	<link rel="stylesheet" type="text/css" href="/users.css">
+<%- include("partials/cdns.ejs") %>	
+	<title>Logged In</title>
+	<style type="text/css">
+		.navbar-brand{
+			font-family: 'Yanone Kaffeesatz', sans-serif;
+			font-weight: 800;
+			font-size: 4rem;
+			letter-spacing: 2px;
+		}
+		.bg-dark {
+    		background-color: #3b5998!important;
+		}
+		.User{
+			border: 2px solid red;
+			margin :10px;
+			padding: 10px;
+			background-color: #289a15;
+			border: none;
+			border-radius: 25px;
+		}
+		
+		button{
+			margin-top:0.5rem !important;
+			margin-left: auto;
+			width: 100%;
+		}
+		.form-group{
+			margin: auto;
+			width: 70%;
+			min-width: 250px;
+			text-align: center;
+		}
+		.w-30{
+			width:30%;
+		}
+		.url{
+			font-weight: bold;
+		}
+		.min-width-150{
+			min-width: 150px;
+		}
+		.text{
+			text-align: left;
+			margin-left: 20px;
+			padding-left: 10px;
+			margin-right: 20px;
+			background-color: orange;
+			border-radius: 25px;
+		}
+	</style>
+</head>
 	<body>
-		<a href="/">logout</a>
-			<div class = "User">
-				<h1>Welcome <%= user.name %> <%= user.surname %>,</h1>
-				<p><strong>Email: <%= user.email %></strong></p>
-				<p><strong>Gender: <%= user.gender %></strong></p>
-				<p><strong>DOB: <%= user.birthday %></strong></p>
-				<p><strong>Password:<%= user.password %></strong></p>
-				<a href="/users/delete/<%= user._id %>">Delete Account?</a>
+		<nav class="navbar navbar-dark fixed-top bg-dark mb-2">
+			<div class="container">		
+			  <a class="navbar-brand" href="/">fakebook</a>
+			    <form action='#' method = 'post' class="form-group w-30 my-2 my-lg-0 mr-0">
+			      <input class="form-control form-control-sm mr-sm-2" type="search" placeholder="Enter Name">
+			      <button disabled class="btn btn-success my-3 my-sm-2 ">Search Friend</button>
+			    </form>
 			</div>
-	</body>
-</html>
+		</nav>
+		<div class="container">
+			<div >
+				<% if(user.profilePic){ %>
+					<img src="<%= user.profilePic %>" class="card card-body m-auto my-4">
+				<% } %>
+				
+				<form action="/profilePic/<%= user._id %>" method='post' class="form-group">
+					<label for="basic-url" class="url mt-2">Change Profile Picture :</label>
+					<div class="input-group mb-1">
+						<div class="input-group-prepend">
+					    	<span class="input-group-text" id="basic-addon3">https://example.com/../.jpg</span>
+						</div>
+						<input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" name="pic" placeholder="Paste the image address here!" >
+					</div>
+					<button class="btn btn-sm w-50 btn-primary min-width-150">Confirm / Reset</button>
+				</form>
+			</div>
+			<div class = "User text-center">
+				<h1><%= user.name %> <%= user.surname %></h1>
+				<p class="text"><strong>EMAIL ID : <%= user.email %></strong></p>
+				<p class="text"><strong>GENDER   : <%= user.gender.toUpperCase() %></strong></p>
+				<p class="text"><strong>D.O.B    :  <%= user.birthday %></strong></p>
+				<p class="text"><strong>PASSWORD : <%= user.password %></strong></p>
+				<a href="/users/delete/<%= user._id %>" class=" btn btn-danger btn-sm btn-outline-danger text-light">Delete Account</a>
+				<a href="/" class="btn btn-sm btn-primary btn-outline-primary text-light">Logout</a>
+			</div>
+		</div>
+<%- include("partials/footer.ejs") %>	

@@ -1,21 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Fakebook-log in</title>
-	<link rel="icon" href="logo.jfif" type="image/icon type">
-
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+<%- include("partials/cdns.ejs") %>	
 	<link rel="stylesheet" type="text/css" href="phasebook.css">
-
-	<link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700&display=swap" rel="stylesheet">
-	<script src="https://kit.fontawesome.com/c3d8830f03.js" crossorigin="anonymous"></script>
-
+	<title>Fakebook-log in</title>
 </head>
 <body>
 
 	<!-- NAVBAR -->
-	<nav class="navbar navbar-dark bg-dark">
+	<nav class="navbar fixed-top navbar-dark bg-dark">
   		<div class="container-md">
 	  		<a class="navbar-brand" href="#"><span class="brand">fakebook</span></a>
 			<form class="nav-form" action="/signin" method="post">
@@ -73,9 +63,9 @@
 							</div>
 							<div class="input-group mt-3">
 							  	<label class="label-gender w-100">Gender:<br>
-							  		<input type="radio" name="gender" name="usergender" value="female" class="ml-3  mr-1 mt-2"><span>Female</span>
-  									<input type="radio" name="gender" name="usergender" value="male" class="ml-3 mr-1 "><span>Male</span>
-  									<input type="radio" name="gender" name="usergender" value="other" class="ml-3 mr-1 "><span>Other</span>
+							  		<input type="radio" name="usergender" value="female" class="ml-3  mr-1 mt-2"><span>Female</span>
+  									<input type="radio" name="usergender" value="male" class="ml-3 mr-1 "><span>Male</span>
+  									<input type="radio" name="usergender" value="other" class="ml-3 mr-1 "><span>Other</span>
   									<abbr title="Click for more information" class="ml-3"><i class="fas fa-question-circle gender-info"></i></abbr>
 							  	</label>
 							</div>
@@ -94,8 +84,4 @@
 			</div>
 			</div>
 	</div>
-
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-</body>
-</html>
+	<%- include("partials/footer.ejs") %>

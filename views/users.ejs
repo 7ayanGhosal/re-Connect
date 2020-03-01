@@ -1,6 +1,42 @@
 <%- include("partials/cdns.ejs") %>	
 	<title>Logged In</title>
 	<style type="text/css">
+
+		/*STYLE FOR <hr>*/
+		hr.style-seven {
+		    overflow: visible; /* For IE */
+		    height: 30px;
+		    border-style: solid;
+		    border-color: black;
+		    border-width: 1px 0 0 0;
+		    border-radius: 20px;
+		}
+		hr.style-seven:before { /* Not really supposed to work, but does */
+		    display: block;
+		    content: "";
+		    height: 30px;
+		    margin-top: -31px;
+		    border-style: solid;
+		    border-color: black;
+		    border-width: 0 0 1px 0;
+		    border-radius: 20px;
+		}
+		.cross{
+			float: right;
+			color : red;
+			font-size: 3rem;
+			margin-right:10px;
+		}
+		.cross:hover{
+			color: red;
+		}
+		.jumbotron{
+			padding: 10px;
+			background : #FFDAB9;
+			border-radius: 25px;
+			margin : 20px 10px;
+			text-align : center;
+		}
 		.navbar-brand{
 			font-family: 'Yanone Kaffeesatz', sans-serif;
 			font-weight: 800;
@@ -47,6 +83,11 @@
 			background-color: orange;
 			border-radius: 25px;
 		}
+		.addPost{
+			padding : 10px;
+			border-radius : 25px;
+			background : #FFFFE0;
+		}
 	</style>
 </head>
 	<body>
@@ -84,6 +125,34 @@
 				<p class="text"><strong>PASSWORD : <%= user.password %></strong></p>
 				<a href="/users/delete/<%= user._id %>" class=" btn btn-danger btn-sm btn-outline-danger text-light">Delete Account</a>
 				<a href="/" class="btn btn-sm btn-primary btn-outline-primary text-light">Logout</a>
+			</div>
+
+
+		<% if(user.posts){ %>
+			<% user.posts.forEach(function(post){ %>
+				<div class="jumbotron ">
+					 <a href="/users/delete/<%= user._id %>/<%= post._id %>" class = "cross"><i class="far fa-times-circle"></i></a>
+					  <h1 class="display-4"><%= post.title %></h1>
+					  <hr class="my-4 style-seven style-seven:before">
+					  <p><%= post.content %></p>
+					  <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+				</div>
+			<% }) %>
+		<% } %>	
+			<div class="addPost">
+				<form class="text-center" action="/addPost/<%= user._id%>" method = "post">
+					<div class="form-group">
+					    <label>Post Title:</label>
+					    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Add post title" name = "newTitle">
+	  				</div>
+					<div class="form-group">
+					    <label>Post Content:</label>
+					    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name = "newContent" placeholder="Add your content here"></textarea>
+	  				</div>
+					<button class="btn btn-secondary btn-sm w-30">
+						Add Post
+					</button>
+				</form>
 			</div>
 		</div>
 <%- include("partials/footer.ejs") %>	

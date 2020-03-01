@@ -22,7 +22,10 @@ var userSchema = new mongoose.Schema({
 	password: String,
 	birthday: Date,
 	gender: String,
-	profilePic: String
+	profilePic: String,
+	posts:[{title: String,
+			content: String
+			}]
 });
 
 //------------------------------------------------MODEL
@@ -126,6 +129,33 @@ app.get("/users/delete/:id", function(req, res){
 		})
 })
 
+//-------------------------------------------------POST DELETE
+app.get("/users/delete/:id1/:id2", function(req, res){
+		var userid = req.params.id1;
+		var postid = req.params.id2;
+		var myquery = {_id: userid};
+		var posts;
+		User.find(myquery,function(err, foundUser){
+			if(err){
+				console.log("ADD POST ERROR");
+			}
+			else{	
+					posts = foundUser[0].posts;
+					posts.pull({_id: postid});
+					var newvalues = {$set: {posts: posts}};
+					User.updateOne(myquery, newvalues, function(err, _res) {
+			 	    	if (err) {throw err}
+			 	    	else{
+			 				signin(userid, res);
+			 	    	}
+     				})
+			}
+		})
+		 
+		
+})
+
+
 //------------------------------------------------ADMIN DELETE
 
 app.get("/admin/delete/:id", function(req, res){
@@ -169,6 +199,30 @@ var signin = function(id, res){
 			}
 	})
 }	
+
+app.post("/addPost/:id", function(req, res){
+	var id = req.params.id;
+	var title = req.body.newTitle;
+	var content = req.body.newContent;
+	var myquery = {_id: id};
+	var posts = [];
+	User.find(myquery,function(err, foundUser){
+			if(err){
+				console.log("ADD POST ERROR");
+			}
+			else{
+				posts = foundUser[0].posts;
+				var newvalues = {$set: {posts: posts}};
+				posts.push({title: title, content: content});
+				User.updateOne(myquery, newvalues, function(err, _res) {
+			    	if (err) {throw err}
+			    	else{
+						signin(id, res);
+			    	}
+    			})
+			}
+	})
+})
 
 
 

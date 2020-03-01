@@ -46,7 +46,7 @@ app.post("/signup", function(req, res){
 	var gender = req.body.usergender;
 	var newUser = {name: name, surname:surname, email: email, password: password, birthday: birthday, gender: gender, profilePic: initialPic};
 	//check if user already exists
-	User.find({name: name}, function(err, foundUser){
+	User.find({email: email}, function(err, foundUser){
 		var len = foundUser.length;
 		if(err){
 			console.log("Error in user find signup");

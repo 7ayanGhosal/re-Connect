@@ -260,7 +260,7 @@ app.get("/users/delete/:id1/:id2", function(req, res){
 		
 })
 
-//------------------------------------------------ADMIN DELETE
+//------------------------------------------------ADMIN ACCOUNT DELETE
 
 app.get("/admin/delete/:id", function(req, res){
 		User.deleteOne({_id:req.params.id},function(){
@@ -273,6 +273,21 @@ app.get("/admin/delete/:id", function(req, res){
 				}
 			})
 		});
+})
+
+//------------------------------------------------ADMIN Review DELETE
+
+app.get("/admin/review/delete/:id", function(req, res){
+	Review.deleteOne({_id:req.params.id},function(){
+		Review.find({}, function(err, foundReview){
+			if(err){
+				console.log("SIGNIN ERROR");
+			}
+			else{
+				res.render("allReviews.ejs",{reviews:foundReview});
+			}
+		})
+	});
 })
 
 //-----------------------------------------------profile pic update

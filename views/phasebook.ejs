@@ -35,14 +35,14 @@
 		}
 	</style>
 	<link rel="stylesheet" type="text/css" href="phasebook.css">
-	<title>Fakebook-log in</title>
+	<title>oldBOOK-log in</title>
 </head>
 <body>
 	<% userid = null %>
 	<!-- NAVBAR -->
 	<nav class="navbar fixed-top navbar-dark bg-dark">
   		<div class="container-md">
-	  		<a class="navbar-brand" href="#"><span class="brand">fakebook</span></a>
+	  		<a class="navbar-brand" href="#"><span class="brand">oldBOOK</span></a>
 			<form class="nav-form" action="/signin" method="post">
 				<div class="row justify-content-between">
 					<div class="col col-4 ">
@@ -67,7 +67,7 @@
 	<div class="container-md">
 		<div class="row">
 			<div class="col col-6">
-				<h4 class="left-text">Fakebook helps you connect and share with the people in your life.</h4>	
+				<h4 class="left-text">oldBOOK helps you connect and share with the people in your life.</h4>	
 				<!-- <div class="start-img"><img src="img1.png"></div> -->
 			</div>
 			<div class="col col-5 pl-5">
@@ -121,7 +121,7 @@
 
 			<% function dispReview(author, Url, content){%>
 				<div class="jumbotron jumbotron-sm review"> 
-					<i class="fas fa-user-check cross"></i>
+					<i class="fas fa-check-circle cross"></i>
 					<div class="author">
 						<img src="<%= Url %>">
 						<h4 class="d-inline"><%= author %></h4>
@@ -129,14 +129,23 @@
 					<p>~ <%= content %></p>
 				</div>
 			<% } %>	
+			<% function dispHidden(){%>
+				<div class="jumbotron jumbotron-sm review"> 
+					<i class="far fa-check-circle cross"></i>
+					<p class="display-5">This review is hidden until admin approves it!, stay tuned... </p>
+				</div>
+			<% } %>	
 
 			<% if(reviews){ %>
 				<h1 >Featured Reviews</h1>
 				<p>(only reviews that follows community guidelines are posted and requires admin's approval)</p>
 				<%  reviews.forEach(function(review){ 
-						 if(review.featured == "true"){ 
-								dispReview(review.author, review.url, review.content);
-					 	} 	
+						if(review.featured == "true"){ 
+							dispReview(review.author, review.url, review.content);
+						}
+						else{ 
+								dispHidden();
+						}
 		 			})
 				}	 %>
 	</div>

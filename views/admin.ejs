@@ -6,7 +6,12 @@
 <body>
 	<p>Admin Only!</p>
 	<form action="/adminLogin" method="post">
-		<input type="password" name="adminPass">
+		<h4>AllReviews</h4>
+		<input type="radio" name = "page" value = "allReviews" required>
+		<h4>AllUsers</h4>
+		<input type="radio" name = "page" value = "allUsers" required> 
+		<hr>
+		<input type="password" name="adminPass" required>
 		<button>Admin Login</button>
 	</form>
 </body>

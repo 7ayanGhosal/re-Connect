@@ -1,14 +1,19 @@
 	<div class="navbar  navbar-light fixed-bottom bg-light">
 			<div class="container">		
 			  <p class=" madeby" href="/">made by ~ Ayan</p>
-			    <form action='/post' method = 'post' class="form-group w-30 m-0 my-2 my-lg-0 mr-0">
-				      <div class="input-group">
+				<% if(!userid) { %>
+			    <form action='/post/review/nonuser' method = 'post' class="form-group w-30 m-0 my-2 my-lg-0 mr-0">			
+				<% }else { %>
+				<form action='/post/review/<%= userid %>' method = 'post' class="form-group w-30 m-0 my-2 my-lg-0 mr-0">
+				<% } %>
+					  <div class="input-group">
 					  <div class="input-group-prepend">
-					    <span class="input-group-text">Post a Review</span>
+						<span class="input-group-text">Post a Review</span>
 					  </div>
-					  <textarea class="form-control" aria-label="With textarea"></textarea>
+					  <textarea class="form-control" name = "content" aria-label="With textarea"></textarea>
 					  </div>
-				      <button disabled class="btn btn-sm btn-outline-warning my-3 my-sm-2 w-25 float-right">Post</button>
+					  <span class="m-0">Your Review will be added to featured reviews in the </span><a class="m-0" href="/">HOME</a> <span>page only after Admin's approval!</span>
+					  <button class="btn btn-sm btn-outline-warning my-3 my-sm-2 w-25 float-right">Post</button>
 			    </form>
 			    <p class="copyright">Fakebook © 2020</p>
 			</div>

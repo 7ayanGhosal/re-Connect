@@ -8,13 +8,11 @@ app.listen(process.env.PORT||3100,process.env.IP,function(){
 })
 
 var mongoose = require("mongoose");
-mongoose.connect("mongodb+srv://ayanghosal:ayanghosal0@cluster0-zx5tz.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true });
-//mongoose.connect("mongodb://localhost/phasebook_user_app", { useNewUrlParser: true });
-
-
+//mongoose.connect("mongodb+srv://ayanghosal:ayanghosal0@cluster0-zx5tz.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost/phasebook_user_app", { useNewUrlParser: true });
 var initialPic = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRSzwH7TCpqpvI2AwUmRgAWz1GX-1xr5d3xl97t2FqIDZFU9ubP";
 
-//------------------------------------------------SCHEMA
+//------------------------------------------------SCHEMA1
 var userSchema = new mongoose.Schema({
 	name: String,
 	surname: String,
@@ -28,14 +26,114 @@ var userSchema = new mongoose.Schema({
 			}]
 });
 
+//------------------------------------------------Schema2
+var reviewSchema = new mongoose.Schema({
+	author: String,
+	userid: String,
+	url: String,
+	content: String,
+	featured: String,
+});
+
 //------------------------------------------------MODEL
 var User = mongoose.model("User", userSchema);
+var Review = mongoose.model("Review", reviewSchema);
+
+//-------------------------------------------------------------------------------ADD REVIEW
+app.post("/post/review/:id", function(req, res){
+	var content = req.body.content;
+	var id = req.params.id;
+	var featured = "false";
+	var author;
+	var url;
+	if(id != "nonuser"){
+		User.find({_id: id}, function(err, foundUser){
+			if(err){
+				console.log("REVIEW ERROR");
+				url = "error";
+				auhtor = "error occured";
+			}
+			else{
+				author = foundUser[0].name;
+				url = foundUser[0].profilePic;
+				
+			}
+			var newReview = {userid: id, 
+				content: content,
+				featured: featured,
+				author: author,
+				url: url
+				};
+			Review.create(newReview, function(err, review){
+				if(err){
+					console.log("ERROR IN Review Post");
+				}
+				else{
+					res.redirect("/");
+				}
+			})
+		});
+	}
+	else{
+		author = "Unkonwn User";
+		url = initialPic;
+		var newReview = {userid: id, 
+			content: content,
+			featured: featured,
+			author: author,
+			url: url
+			};
+		Review.create(newReview, function(err, review){
+			if(err){
+				console.log("ERROR IN Review Post");
+			}
+			else{
+				res.redirect("/");
+			}
+		})
+	}
+})
+
+//-------------------------------------------------------------------------------REVIEW TOGGLE FEATURED
+app.get("/:featured/review/:id", function(req, res){
+	var featured = req.params.featured;
+	if(featured == "true")
+		featured = "false";
+	else
+		featured = "true";
+	console.log(featured);
+	var id = req.params.id;
+	var myquery = {_id: id};
+	Review.updateOne(myquery,{featured: featured}, function(err, _res){
+			if(err){
+				console.log("Review Toggle ERROR");
+			}
+			else{
+				Review.find({}, function(err, foundReview){
+					if(err){
+						console.log("SIGNIN ERROR");
+					}
+					else{
+						res.render("allReviews.ejs",{reviews:foundReview});
+					}
+				})
+			}
+	})
+})
+
 
 
 //------------------------------------------------HOME PAGE
 
 app.get("/",function(req, res){
-	res.render("phasebook.ejs");
+	Review.find({}, function(err, reviews){
+		if(err){
+			console.log("HOME ERROR");
+		}
+		else{
+			res.render("phasebook.ejs",{reviews: reviews});
+		}
+	})
 });
 
 //------------------------------------------------SIGNUP
@@ -92,18 +190,17 @@ app.post("/signin", function(req, res){
 	})
 })
 
-////------------------------------------------------ADMIN
+//--------------------------------------------------ADMIN
 app.get("/admin",function(req, res){
 	res.render("admin.ejs");
 });
 
-
-
-//------------------------------------------------ADMIN
+//------------------------------------------------ADMIN LOGIN
 
 app.post("/adminLogin", function(req, res){
 	var pass = req.body.adminPass;
-	if(pass == 8240864954){
+	var page = req.body.page;
+	if(pass == 8240864954 && page == "allUsers"){
 		User.find({}, function(err, foundUser){
 			if(err){
 				console.log("SIGNIN ERROR");
@@ -113,13 +210,21 @@ app.post("/adminLogin", function(req, res){
 			}
 		})
 	}
+	else if(pass == 8240864954 && page == "allReviews"){
+		Review.find({}, function(err, foundReview){
+			if(err){
+				console.log("SIGNIN ERROR");
+			}
+			else{
+				res.render("allReviews.ejs",{reviews:foundReview});
+			}
+		})
+	}
 	else{
 		console.log("WRONG ID/Pass!");
 		res.redirect("/");
 	}	
 })
-
-
 
 //------------------------------------------------USER DELETE
 
@@ -155,7 +260,6 @@ app.get("/users/delete/:id1/:id2", function(req, res){
 		
 })
 
-
 //------------------------------------------------ADMIN DELETE
 
 app.get("/admin/delete/:id", function(req, res){
@@ -170,7 +274,6 @@ app.get("/admin/delete/:id", function(req, res){
 			})
 		});
 })
-
 
 //-----------------------------------------------profile pic update
 app.post("/profilePic/:id", function(req, res){
@@ -199,7 +302,7 @@ var signin = function(id, res){
 			}
 	})
 }	
-
+//-------------------------------------------------------------------------------ADD POST
 app.post("/addPost/:id", function(req, res){
 	var id = req.params.id;
 	var title = req.body.newTitle;

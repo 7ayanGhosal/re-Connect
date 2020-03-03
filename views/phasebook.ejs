@@ -1,9 +1,44 @@
 <%- include("partials/cdns.ejs") %>	
+	<style>
+		.cross{
+			float: right;
+			color : red;
+			font-size: 1rem;
+			margin-right:10px;
+		}
+		.cross:hover{
+			color: red;
+		}
+		.review img{
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			border: 6px solid white;
+			margin-left: -5px;
+		}
+		.review .author{
+			background-color: white;
+			display: inline;
+			margin-left: 10px;
+			border-radius: 25px;
+			padding: 5px;
+			padding-right: 10px;
+		}
+		.review p{
+			margin: 10px ;
+			margin-left: 250px;
+		}
+		.jumbotron{
+			padding: 10px;
+			border-radius: 20px;
+			background-color: rgba(0,250,154,0.4);
+		}
+	</style>
 	<link rel="stylesheet" type="text/css" href="phasebook.css">
 	<title>Fakebook-log in</title>
 </head>
 <body>
-
+	<% userid = null %>
 	<!-- NAVBAR -->
 	<nav class="navbar fixed-top navbar-dark bg-dark">
   		<div class="container-md">
@@ -32,7 +67,7 @@
 	<div class="container-md">
 		<div class="row">
 			<div class="col col-6">
-				<h4 class="left-text">Facebook helps you connect and share with the people in your life.</h4>	
+				<h4 class="left-text">Fakebook helps you connect and share with the people in your life.</h4>	
 				<!-- <div class="start-img"><img src="img1.png"></div> -->
 			</div>
 			<div class="col col-5 pl-5">
@@ -82,6 +117,27 @@
 					</div>
 				</form>
 			</div>
-			</div>
+			</div>	
+
+			<% function dispReview(author, Url, content){%>
+				<div class="jumbotron jumbotron-sm review"> 
+					<i class="fas fa-user-check cross"></i>
+					<div class="author">
+						<img src="<%= Url %>">
+						<h4 class="d-inline"><%= author %></h4>
+					</div>
+					<p>~ <%= content %></p>
+				</div>
+			<% } %>	
+
+			<% if(reviews){ %>
+				<h1 >Featured Reviews</h1>
+				<p>(only reviews that follows community guidelines are posted and requires admin's approval)</p>
+				<%  reviews.forEach(function(review){ 
+						 if(review.featured == "true"){ 
+								dispReview(review.author, review.url, review.content);
+					 	} 	
+		 			})
+				}	 %>
 	</div>
 	<%- include("partials/footer.ejs") %>

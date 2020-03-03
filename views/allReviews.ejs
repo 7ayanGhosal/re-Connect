@@ -1,0 +1,24 @@
+<%- include("partials/cdns.ejs") %>
+	<link rel="stylesheet" type="text/css" href="/users.css">
+	<body>
+		<a href="/">logout</a>
+			
+		<% function dispReview(author, Url, content, featured, id){%>
+			<div class="jumbotron jumbotron-sm review"> 
+				<div class="author">
+					<img src="<%= Url %>">
+					<h4 class="d-inline"><%= author %></h4>
+				</div>
+				<p><%= content %></p>
+				<a href="/<%= featured %>/review/<%= id %>">Toggle Featured</a>
+			</div>
+		<% } %>	
+
+		<% if(reviews){ %>
+			<h1 >All Reviews</h1>
+			<%  reviews.forEach(function(review){ 
+					dispReview(review.author, review.url, review.content, review.featured, review._id);
+				 })
+			}	 %>
+	</body>
+</html>

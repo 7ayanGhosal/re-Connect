@@ -8,8 +8,8 @@ app.listen(process.env.PORT||3100,process.env.IP,function(){
 })
 
 var mongoose = require("mongoose");
-//mongoose.connect("mongodb+srv://ayanghosal:ayanghosal0@cluster0-zx5tz.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true });
-mongoose.connect("mongodb://localhost/phasebook_user_app", { useNewUrlParser: true });
+mongoose.connect("mongodb+srv://ayanghosal:ayanghosal0@cluster0-zx5tz.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true });
+//mongoose.connect("mongodb://localhost/phasebook_user_app", { useNewUrlParser: true });
 var initialPic = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRSzwH7TCpqpvI2AwUmRgAWz1GX-1xr5d3xl97t2FqIDZFU9ubP";
 
 //------------------------------------------------SCHEMA1

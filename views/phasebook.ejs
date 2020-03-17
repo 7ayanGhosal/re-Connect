@@ -83,7 +83,7 @@
 				</form>
 			</div>
 			</div>	
-
+		<!-- REVIEWS -->
 			<% function dispReview(author, Url, content){%>
 				<div class="jumbotron jumbotron-sm review"> 
 					<i class="fas fa-check-circle cross"></i>
@@ -91,7 +91,7 @@
 						<img src="<%= Url %>">
 						<h4 class="d-inline"><%= author %></h4>
 					</div>
-					<p>~ <%= content %></p>
+					<p class="font-caveat">~ <%= content %></p>
 				</div>
 			<% } %>	
 			<% function dispHidden(){%>
@@ -102,7 +102,7 @@
 			<% } %>	
 
 			<% if(reviews){ %>
-				<h1 >Featured Reviews</h1>
+				<h1 class="font-SpecialElite">Featured Reviews</h1>
 				<p>(only reviews that follows community guidelines are posted and requires admin's approval)</p>
 				<%  reviews.forEach(function(review){ 
 						if(review.featured == "true"){ 

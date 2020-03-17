@@ -1,24 +1,23 @@
-	<div class="navbar  navbar-light bg-light">
-			<div class="container">		
-			  <p class=" madeby" href="/">made by ~ Ayan</p>
-				<% if(!userid) { %>
-			    <form action='/post/review/nonuser' method = 'post' class="form-group m-0 my-2 my-lg-0 mr-0">			
-				<% }else { %>
-				<form action='/post/review/<%= userid %>' method = 'post' class="form-group m-0 my-2 my-lg-0 mr-0">
-				<% } %>
-					  <div class="input-group">
-					  <div class="input-group-prepend">
-						<span class="input-group-text">Post a Review</span>
-					  </div>
-					  <textarea class="form-control" name = "content" aria-label="With textarea"></textarea>
-					  </div>
-					  <span class="m-0">Your Review will be added to featured reviews in the </span><a class="m-0" href="/">HOME</a> <span>page only after Admin's approval!</span>
-					  <button class="btn btn-sm btn-outline-warning my-3 my-sm-2 w-25 float-right">Post</button>
-			    </form>
-			    <p class="copyright">oldBOOK © 2020</p>
-			</div>
+	<div class="navbar navbar-light bg-light footer">
+		<div class="container">		
+			<p class=" madeby" href="/">made by ~ Ayan</p>
+			<% if(!userid) { %>
+			<form action='/post/review/nonuser' method = 'post' class="form-group m-0 my-2 my-lg-0 mr-0">			
+			<% }else { %>
+			<form action='/post/review/<%= userid %>' method = 'post' class="form-group m-0 my-2 my-lg-0 mr-0">
+			<% } %>
+					<div class="input-group">
+					<div class="input-group-prepend">
+					<span class="input-group-text">Post a Review</span>
+					</div>
+					<textarea class="form-control" name = "content" aria-label="With textarea"></textarea>
+					</div>
+					<span class="m-0">Your Review will be added to featured reviews in the </span><a class="m-0" href="/">HOME</a> <span>page only after Admin's approval!</span>
+					<button class="btn btn-sm btn-outline-warning my-3 my-sm-2 w-25 float-right">Post</button>
+			</form>
+			<p class="copyright">oldBOOK © 2020</p>
 		</div>
-	</body>
+	</div>
 	<!-- BOOTSTRAP JQUERY, JS -->
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

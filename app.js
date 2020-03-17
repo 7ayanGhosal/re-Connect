@@ -3,14 +3,14 @@ var app = express();
 var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
-app.listen(process.env.PORT||3100,process.env.IP,function(){
+app.listen(process.env.PORT||3000,process.env.IP,function(){
 	console.log("Server Started");
 })
 
 var mongoose = require("mongoose");
 mongoose.connect("mongodb+srv://ayanghosal:ayanghosal0@cluster0-zx5tz.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true });
 //mongoose.connect("mongodb://localhost/phasebook_user_app", { useNewUrlParser: true });
-var initialPic = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRSzwH7TCpqpvI2AwUmRgAWz1GX-1xr5d3xl97t2FqIDZFU9ubP";
+var initialPic = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRk5X_5u4w0vG2N-xreQybLYIyu73x9fhqC-BGzSRS7HjZdGOIF";
 
 //------------------------------------------------SCHEMA1
 var userSchema = new mongoose.Schema({
@@ -26,7 +26,7 @@ var userSchema = new mongoose.Schema({
 			}]
 });
 
-//------------------------------------------------Schema2
+//------------------------------------------------Review Schema
 var reviewSchema = new mongoose.Schema({
 	author: String,
 	userid: String,
@@ -35,7 +35,7 @@ var reviewSchema = new mongoose.Schema({
 	featured: String,
 });
 
-//------------------------------------------------MODEL
+//------------------------------------------------MODELS
 var User = mongoose.model("User", userSchema);
 var Review = mongoose.model("Review", reviewSchema);
 
@@ -43,7 +43,8 @@ var Review = mongoose.model("Review", reviewSchema);
 app.post("/post/review/:id", function(req, res){
 	var content = req.body.content;
 	var id = req.params.id;
-	var featured = "false";
+	//var featured = "false";
+	var featured = "true";
 	var author;
 	var url;
 	if(id != "nonuser"){
@@ -181,6 +182,7 @@ app.post("/signin", function(req, res){
 			console.log("SIGNIN ERROR");
 		}
 		else if(len == 1){
+
 			res.render("users.ejs",{user:foundUser[0]});
 		}
 		else{
@@ -200,7 +202,7 @@ app.get("/admin",function(req, res){
 app.post("/adminLogin", function(req, res){
 	var pass = req.body.adminPass;
 	var page = req.body.page;
-	if(pass == 8240864954 && page == "allUsers"){
+	if(pass == 743144 && page == "allUsers"){
 		User.find({}, function(err, foundUser){
 			if(err){
 				console.log("SIGNIN ERROR");
@@ -210,7 +212,7 @@ app.post("/adminLogin", function(req, res){
 			}
 		})
 	}
-	else if(pass == 8240864954 && page == "allReviews"){
+	else if(pass == 743144 && page == "allReviews"){
 		Review.find({}, function(err, foundReview){
 			if(err){
 				console.log("SIGNIN ERROR");
@@ -228,16 +230,16 @@ app.post("/adminLogin", function(req, res){
 
 //------------------------------------------------USER DELETE
 
-app.get("/users/delete/:id", function(req, res){
-		User.deleteOne({_id:req.params.id},function(){
-			res.redirect("/");
-		})
+app.post("/users/delete/", function(req, res){
+	User.deleteOne({_id:req.body.userid},function(){
+		res.redirect("/");
+	})
 })
 
 //-------------------------------------------------POST DELETE
-app.get("/users/delete/:id1/:id2", function(req, res){
-		var userid = req.params.id1;
-		var postid = req.params.id2;
+app.post("/users/delete/post", function(req, res){
+		var userid = req.body.userid;
+		var postid = req.body.postid;
 		var myquery = {_id: userid};
 		var posts;
 		User.find(myquery,function(err, foundUser){
@@ -291,8 +293,8 @@ app.get("/admin/review/delete/:id", function(req, res){
 })
 
 //-----------------------------------------------profile pic update
-app.post("/profilePic/:id", function(req, res){
-	var id = req.params.id;
+app.post("/users/updateDP", function(req, res){
+	var id = req.body.userid;
 	var myquery = {_id: id};
 	if(! req.body.pic)
 		req.body.pic = initialPic;
@@ -318,8 +320,8 @@ var signin = function(id, res){
 	})
 }	
 //-------------------------------------------------------------------------------ADD POST
-app.post("/addPost/:id", function(req, res){
-	var id = req.params.id;
+app.post("/users/addPost", function(req, res){
+	var id = req.body.userid;
 	var title = req.body.newTitle;
 	var content = req.body.newContent;
 	var myquery = {_id: id};

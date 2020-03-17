@@ -16,11 +16,6 @@
 	color: #90949c;
 	font-size: 11px;
 }
-.start-img{
-	background-image: cover;
-	width: 100%;
-}
-
 .login-btn{
 	height: 20px;
 	width: 50px;
@@ -31,14 +26,6 @@
 	border: 1px solid black;
 	background-color: #ffffe0!important;
 	color: black;
-}
-.left-text{
-	margin-top: 31px;
-	font-size: 25px;
-}
-.right-text{
-	font-size: 25px;
-	text-align: left;
 }
 .label-bday, .label-gender{
 	font-size: 20px;
@@ -63,13 +50,42 @@
 .create-text{
 	color: #666;
 }
-.copyright{
-	position: fixed;
-    /*right: 0;*/
-    bottom: 0;
-    /*left: 0;*/
-    /*z-index: 1030;*/
+.cross{
+	float: right;
+	color : red;
+	font-size: 1rem;
+	margin-right:10px;
 }
-.madeby{
-	font-size: 2rem;
+.cross:hover{
+	color: red;
+}
+.review img{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	border: 6px solid white;
+	margin-left: -5px;
+}
+.review .author{
+	background-color: white;
+	display: inline;
+	margin-left: 10px;
+	border-radius: 25px;
+	padding: 5px;
+	padding-right: 10px;
+}
+.review p{
+	margin: 10px ;
+	margin-left: 250px;
+}
+.jumbotron{
+	padding: 10px;
+	border-radius: 20px;
+	background-color: rgba(0,250,154,0.4);
+}
+.icon img{
+	/* width: 1em; */
+	height: 0.7em;
+	margin-bottom: 13px;
+	border-radius: 50%;
 }

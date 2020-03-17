@@ -1,10 +1,10 @@
-	<div class="navbar  navbar-light fixed-bottom bg-light">
+	<div class="navbar  navbar-light bg-light">
 			<div class="container">		
 			  <p class=" madeby" href="/">made by ~ Ayan</p>
 				<% if(!userid) { %>
-			    <form action='/post/review/nonuser' method = 'post' class="form-group w-30 m-0 my-2 my-lg-0 mr-0">			
+			    <form action='/post/review/nonuser' method = 'post' class="form-group m-0 my-2 my-lg-0 mr-0">			
 				<% }else { %>
-				<form action='/post/review/<%= userid %>' method = 'post' class="form-group w-30 m-0 my-2 my-lg-0 mr-0">
+				<form action='/post/review/<%= userid %>' method = 'post' class="form-group m-0 my-2 my-lg-0 mr-0">
 				<% } %>
 					  <div class="input-group">
 					  <div class="input-group-prepend">
@@ -15,7 +15,7 @@
 					  <span class="m-0">Your Review will be added to featured reviews in the </span><a class="m-0" href="/">HOME</a> <span>page only after Admin's approval!</span>
 					  <button class="btn btn-sm btn-outline-warning my-3 my-sm-2 w-25 float-right">Post</button>
 			    </form>
-			    <p class="copyright">Fakebook © 2020</p>
+			    <p class="copyright">oldBOOK © 2020</p>
 			</div>
 		</div>
 	</body>

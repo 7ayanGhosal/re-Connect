@@ -1,58 +1,24 @@
+<% const icon = "data:image/jpeg;base64,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" %>
 <%- include("partials/cdns.ejs") %>	
-	<style>
-		.cross{
-			float: right;
-			color : red;
-			font-size: 1rem;
-			margin-right:10px;
-		}
-		.cross:hover{
-			color: red;
-		}
-		.review img{
-			width: 50px;
-			height: 50px;
-			border-radius: 50%;
-			border: 6px solid white;
-			margin-left: -5px;
-		}
-		.review .author{
-			background-color: white;
-			display: inline;
-			margin-left: 10px;
-			border-radius: 25px;
-			padding: 5px;
-			padding-right: 10px;
-		}
-		.review p{
-			margin: 10px ;
-			margin-left: 250px;
-		}
-		.jumbotron{
-			padding: 10px;
-			border-radius: 20px;
-			background-color: rgba(0,250,154,0.4);
-		}
-	</style>
 	<link rel="stylesheet" type="text/css" href="phasebook.css">
-	<title>oldBOOK-log in</title>
+	<title>oldBOOK</title>
 </head>
 <body>
 	<% userid = null %>
 	<!-- NAVBAR -->
 	<nav class="navbar fixed-top navbar-dark bg-dark">
   		<div class="container-md">
-	  		<a class="navbar-brand" href="#"><span class="brand">oldBOOK</span></a>
+	  		<a class="navbar-brand" href=""><span class="brand icon"> <img src="<%= icon %>">ldBOOK</span></a>
 			<form class="nav-form" action="/signin" method="post">
 				<div class="row justify-content-between">
 					<div class="col col-4 ">
-						<div>Email or Phone</div>
+						<div>Email</div>
 						<div><input class="form" type="email" name = "useremail" required></div>
 					</div>
 					<div class="col col-4">
 						<div>Password</div>
 						<div><input class="form" type="password" name="userpassword" required></div>
-						<a href="#" class="forgotten">Forgotten account?</a>
+						<a href="" class="forgotten">Forgotten account?</a>
 					</div>
 					<div class="col col-3 align-self-center">
 						<button type="submit" class="login-btn">Log In</button>
@@ -66,24 +32,23 @@
 
 	<div class="container-md">
 		<div class="row">
-			<div class="col col-6">
+			<!-- <div class="col col-6">
 				<h4 class="left-text">oldBOOK helps you connect and share with the people in your life.</h4>	
-				<!-- <div class="start-img"><img src="img1.png"></div> -->
-			</div>
-			<div class="col col-5 pl-5">
+			</div> -->
+			<div class="col col-5 pl-5 text-center m-auto">
 				<form class="row" action="/signup" method="post">
 					<div>
-						<h1 class="pl-2">Create an account</h1>
-						<div class="right-text pl-2">It's quick and easy.</div>
+						<h1>Create an account</h1>
+						<div>It's quick and easy.</div>
 					</div>
-					<div class="row pl-4">
+					<div class="row">
 						<div>
 							<div class="input-group mt-3">
 							  	<input type="text" placeholder="Enter name" name="username" aria-label="Name" class="form-control rounded mr-2" required>
 							  	<input type="text" placeholder="Surname" name="usersurname" aria-label="Surname" class="form-control rounded" required>
 							</div>
 							<div class="input-group mt-3">
-							  	<input type="email number" name="useremail" placeholder="Mobile number or email address" aria-label="Mobile" class="form-control rounded" required>
+							  	<input type="email" name="useremail" placeholder="Email address" class="form-control rounded" required>
 							</div>
 							<div class="input-group mt-3">
 							  	<input type="password" placeholder="New password" name="userpassword" aria-label="password" class="form-control rounded" required>
@@ -92,7 +57,7 @@
 							  	<label class="label-bday w-100">Birthday:
 							  		<div>
 							  			<input type="date" aria-label="birthday" name="userbirthday" class="form-control d-inline w-75" required>
-							  			<abbr title="Click for more information"><i class="fas fa-question-circle bday-info"></i></abbr>
+							  			<!-- <abbr title="Click for more information"><i class="fas fa-question-circle bday-info"></i></abbr> -->
 							  		</div>
 							  	</label>
 							</div>
@@ -101,18 +66,18 @@
 							  		<input type="radio" name="usergender" value="female" class="ml-3  mr-1 mt-2"><span>Female</span>
   									<input type="radio" name="usergender" value="male" class="ml-3 mr-1 "><span>Male</span>
   									<input type="radio" name="usergender" value="other" class="ml-3 mr-1 "><span>Other</span>
-  									<abbr title="Click for more information" class="ml-3"><i class="fas fa-question-circle gender-info"></i></abbr>
+  									<!-- <abbr title="Click for more information" class="ml-3"><i class="fas fa-question-circle gender-info"></i></abbr> -->
 							  	</label>
 							</div>
-							<div class="agreement-text w-75 mt-2">
-								<p>By clicking Sign Up, you agree to our <a href="#">Terms</a>, <a href="#">Data Policy</a> and <a href="#">Cookie Policy</a>. You may receive SMS notifications from us and can opt out at any time.</p>
+							<div class="agreement-text text-center mt-2">
+								<p>By clicking Sign Up, you agree to our <a href="#">Terms</a>, <a href="#">Data Policy</a> and <a href="#">Cookie Policy</a>.</p>
 							</div>
 							<div>
-								<button type="submit" class="btn btn-sm w-50 btn-success">Sign up</button>
+								<button type="submit" class="btn btn-sm w-50 btn-success mb-4">Sign up</button>
 							</div>
-							<div class="create-text">
+							<!-- <div class="create-text">
 								<p><a href="#">Create a Page</a> for a celebrity, band or business.</p>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</form>

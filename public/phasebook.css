@@ -29,7 +29,7 @@
 .bday-info:hover ,.gender-info:hover{
 	color: red;
 }
-.label-gender span{
+.genders{
 	color: black;
 	font-weight: normal;
 	font-size: 22px;

@@ -5,8 +5,22 @@
 </head>
 <body>
 	<% userid = null %>
+
+	<nav class="container navbar navbar-dark bg-dark rounded-bottom px-5 mb-3">
+		<a class="navbar-brand" href="/""><span class="brand icon font-Frekle"> re-C<img src="<%= icon %>" class="mt-2">NNECT</span></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon "></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		  <form class="form-inline my-2 my-lg-0" action="/signin" method="post">
+			<input class="form-control mr-sm-2 my-2" type="email" name = "useremail" placeholder="Email address" required>
+			<input class="form-control mr-sm-2 my-2" type="password" name="userpassword" placeholder="Password" required>
+			<button class="btn btn-success my-2 my-sm-0" type="submit">Login</button>
+		  </form>
+		</div>
+	  </nav>
 	<!-- NAVBAR -->
-	<nav class="navbar sticky-top navbar-dark bg-dark">
+	<!-- <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
   		<div class="container-md">
 	  		<a class="navbar-brand" href=""><span class="brand icon"> re-C<img src="<%= icon %>">NNECT</span></a>
 			<form class="nav-form" action="/signin" method="post">
@@ -26,21 +40,21 @@
 				</div>
 			</form>
 	  	</div>
-	</nav>
+	</nav> -->
 
 	<!-- FORM REGION -->
 
 	<div class="container-md">
+			<div class="text-center">
+				<h1 class="bold-600">Create an account</h1>
+				<div>It's quick and easy.</div>
+			</div>
 		<div class="row">
 			<!-- <div class="col col-6">
 				<h4 class="left-text">re-CONNECT helps you connect and share with the people in your life.</h4>	
 			</div> -->
 			<div class="col col-5 pl-5 text-center m-auto">
 				<form class="row" action="/signup" method="post">
-					<div>
-						<h1>Create an account</h1>
-						<div>It's quick and easy.</div>
-					</div>
 					<div class="row">
 						<div>
 							<div class="input-group mt-3">
@@ -89,9 +103,9 @@
 					<i class="fas fa-check-circle cross"></i>
 					<div class="author">
 						<img src="<%= Url %>">
-						<h4 class="d-inline"><%= author %></h4>
+						<h4 class="d-inline font-concert"><%= author %></h4>
 					</div>
-					<p class="font-caveat">~ <%= content %></p>
+					<p class="font-handlee">~ <%= content %></p>
 				</div>
 			<% } %>	
 			<% function dispHidden(){%>

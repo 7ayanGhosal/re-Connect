@@ -40,12 +40,7 @@
 			margin : 20px 10px;
 			text-align : center;
 		}
-		.navbar-brand{
-			font-family: 'Yanone Kaffeesatz', sans-serif;
-			font-weight: 800;
-			font-size: 4rem;
-			letter-spacing: 2px;
-		}
+		
 		.User{
 			border: 2px solid red;
 			margin :10px;
@@ -75,7 +70,7 @@
 			padding-left: 10px;
 			margin-right: 20px;
 			background-color: orange;
-			border-radius: 25px;
+			/* border-radius: 25px; */
 		}
 		.addPost{
 			padding : 10px;
@@ -92,15 +87,27 @@
 </head>
 	<body>
 		<% userid = user._id%>
-		<nav class="navbar navbar-dark sticky-top bg-dark mb-2">
+		<nav class="container navbar navbar-dark bg-dark rounded-bottom px-5 mb-3">
+			<a class="navbar-brand" href="/"><span class="brand icon font-Frekle"> re-C<img src="<%= icon %>" class="mt-2">NNECT</span></a>
+			<!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			  <span class="navbar-toggler-icon "></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			  <form class="form-inline my-2 my-lg-0" action="/signin" method="post">
+				<input class="form-control mr-sm-2 my-2" type="search" name = "username" placeholder="Enter Name" required>
+				<button class="btn btn-success my-2 my-sm-0" type="submit">Login</button>
+			  </form>
+			</div> -->
+		</nav>
+		<!-- <nav class="navbar navbar-dark sticky-top bg-dark mb-2">
 			<div class="container">
-				<a class="navbar-brand" href=""><span class="brand icon"> re-C<img src="<%= icon %>">NNECT</span></a>
+				<a class="navbar-brand" href="/"><span class="brand icon"> re-C<img src="<%= icon %>">NNECT</span></a>
 			    <form action='#' method = 'post' class="form-group w-30 my-2 my-lg-0 mr-0">
 			      <input class="form-control form-control-sm mr-sm-2" type="search" placeholder="Enter Name">
 			      <button disabled class="btn btn-success my-3 my-sm-2 ">Search Friend</button>
 			    </form>
 			</div>
-		</nav>
+		</nav> -->
 		<div class="container">
 			<div>
 				<% if(user.profilePic){ %>
@@ -119,14 +126,14 @@
 				</form>
 			</div>
 			<div class = "User text-center">
-				<h1><%= user.name %> <%= user.surname %></h1>
-				<p class="text"><strong>EMAIL ID : <%= user.email %></strong></p>
-				<p class="text"><strong>GENDER   : <%= user.gender.toUpperCase() %></strong></p>
-				<p class="text"><strong>D.O.B    :  <%= user.birthday.toDateString() %></strong></p>
-				<p class="text"><strong>PASSWORD : <%= user.password %></strong></p>
+				<h1 class="font-concert"><%= user.name %> <%= user.surname %></h1>
+				<p class="rounded-pill text font-handlee"><strong class="font-concert">EMAIL ID : </strong><%= user.email %></p>
+				<p class="rounded-pill text font-handlee"><strong class="font-concert">GENDER   : </strong><%= user.gender.toUpperCase() %></p>
+				<p class="rounded-pill text font-handlee"><strong class="font-concert">D.O.B    : </strong><%= user.birthday.toDateString() %></p>
+				<p class="rounded-pill text font-handlee"><strong class="font-concert">PASSWORD : </strong><%= user.password %></p>
 				<form action="/users/delete/" method="post">
-					<button class=" btn btn-danger btn-sm btn-outline-danger text-light" name="userid" value="<%= user._id %>" >Delete Account</button>
-					<a href="/" class ="btn btn-sm btn-primary btn-outline-primary text-light">Logout</a>
+					<button class=" btn btn-danger btn-sm btn-outline-danger text-light mb-1" name="userid" value="<%= user._id %>" >Delete Account</button>
+					<a href="/" class ="btn btn-sm btn-primary btn-outline-primary text-light mt-1">Logout</a>
 				</form>
 			</div>
 
